@@ -192,3 +192,21 @@ FROM notifications
 WHERE notificationType = 'Placement'
 AND createdAt == NOW() - INTERVAL 7 DAY;
 
+this will fetch the data of all the students who have received the placements notification in last 7 days
+
+Stage 4
+
+Problem-As a user opens or refreshes the page ,the db requests will become high which cant be handled and can be overwhelmming
+
+Solution-too many requests makes the system slow so 
+we can use Pagination or Caching (frequently used data-every time from data) 
+-no load 
+-fast retrival
+-quick responce from the server
+
+Indexing database can also be a solution for too many requests handling -by creating ids or indexe for frequently used data base
+
+
+By the above methonds we can reduce the load on the server and can retrive the data in a faster manner
+
+
