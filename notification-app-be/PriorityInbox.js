@@ -2,6 +2,12 @@ const ACCESS_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXV
 
 const API_URL = "http://4.224.186.213/evaluation-service/notifications";
 
+
+const priorityplacement = {
+  Placement: 3,
+  Result: 2,
+  Event: 1,
+};
 async function fetchNotifications() {
   try {
     const response = await fetch(API_URL, {
