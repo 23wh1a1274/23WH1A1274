@@ -210,3 +210,39 @@ Indexing database can also be a solution for too many requests handling -by crea
 By the above methonds we can reduce the load on the server and can retrive the data in a faster manner
 
 
+Stage 5
+
+Problems:
+
+If sending an email fails,what if the email sending process stops midway like in the 200,now the rest students will not receive the email.
+and we cant even mail individually to 50000+ people which will take lots of time
+
+Solution
+1.first send the notification to the db
+2.and then the emails
+3.if email fails retry -which make it more reliable 
+
+Saving the notification should happen first so that it is not lost. Sending emails can happen separately As email may fail or take more time to deivery
+
+Pseudocode
+
+for student in students:
+
+    save notification to database
+
+    send the emails
+    if fails:
+        email retry
+    else sucess:
+        done
+
+With this the student will get notified surely by the notification as the email may take time but the information is passed successfully 
+
+Functions used:
+1.send_email
+2.save_to_db
+3.push_to app
+
+
+
+
