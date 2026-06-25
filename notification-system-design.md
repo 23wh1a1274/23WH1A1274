@@ -243,6 +243,36 @@ Functions used:
 2.save_to_db
 3.push_to app
 
+Stage 6:
+Approach
+To retrive the top 10 priority notifications:
+
+Get all notifications from the Notification API.
+Give priority based on notification type:
+
+   1.Placement = 3(higher priority)
+   2.Result = 2
+   3.Event = 1(lower priority)
+If two notifications have the same priority, show the latest one first.
+Get all the 10 on the console
+
+
+Fetch notifications
+
+Filter unread notifications
+
+Sort by priority and time 
+
+Maintaining the Top 10 Notifications
+
+Instead of sorting all notifications every time, I would keep only the best 10 notifications in memory.
+
+When a new notification arrives:
+
+1. Check its priority.
+2. Compare it with the current top 10 notifications.
+3. If it has higher priority (or is newer with the same priority), replace the lowest priority notification in the list. and sort the 10
+
 
 
 
