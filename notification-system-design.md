@@ -92,11 +92,63 @@ Example:
 
 ```json
 {
-  "event": "NEW_NOTIFICATION",
+  "event": "value",
   "data": {
     "id": "2",
-    "title": "New Message",
+    "title": "id-updates",
     "message": "You have a new notification"
   }
 }
-```
+
+Stage 2-Update
+
+DB-Data Base used:: MongoDB-NoSQL
+as it is JSON values it is easy to store them on mongo db and make the necessary changes accordingly 
+and it is scalable also 
+
+1.Schema-Followed by the DB
+
+Collection: **notifications**
+
+{
+  "_id": "notificationId",
+  "userId": "specific USer id",
+  "title": "Notification TItle",
+  "message": "message",
+  "type": "String",
+  "isRead": false,"which will turn true on markread"
+  "createdAt": "time"
+}
+
+2.Problems - which might occur after the data vol increses
+-DB size will rise.
+-MarkRead operation can take time
+-Slow Processing
+
+3.Solutions suggested
+
+-Use scalable DB as the data increses
+-Use pagination and Segmentation 
+-Time to Time deletion of older notificatins
+
+---
+
+NoSQL Queries
+1.Get All Notifications
+db.notification.find({ userId: "123" })
+-will get all the notifications of a specific user based on the user id mentioned
+
+2.Get Notification by ID
+db.notification.find({ _id: ObjectId("id") })
+-to get specific notification from a specific ID(only one json value)
+
+3.Mark as Read
+db.notification.updateOne(
+  { _id: ObjectId("id") },
+  { $set: { isRead: true } }
+)
+intially set the value to false will turn to true on reading the message
+
+4.Delete Notification
+db.notification.deleteOn({ _id: ObjectId("id") })
+-will delete the one value
