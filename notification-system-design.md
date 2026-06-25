@@ -152,3 +152,43 @@ intially set the value to false will turn to true on reading the message
 4.Delete Notification
 db.notification.deleteOn({ _id: ObjectId("id") })
 -will delete the one value
+
+Stage 3
+
+Query-b earlier developer:
+
+SELECT * FROM notifications
+WHERE studentId = 1042 AND isRead = false
+ORDER BY createdAt ASC;
+
+This query correctly fetches all unread notifications of student id 1042 and sorts them by creation time in asc order
+
+
+It is slow because the db contains large amot of data about 50000 students,5000000 notifications 
+
+Without proper indexes the db has to search through many rows before finding the required notifications
+which causes delay in retriving and sorting
+
+Can be improved?
+
+
+Create a index on:
+(studentId, isRead, createdAt);
+O(n)-without indexs
+which can make it faster with log n time complexity 
+
+
+Should we add indexes on every column?
+Yes - although it uses more storage the speed will increse while retriving
+
+Indexes should only be added to columns that are frequently used
+
+Question:
+waq who got a placement notification in last 7 days 
+
+
+SELECT studentId
+FROM notifications
+WHERE notificationType = 'Placement'
+AND createdAt == NOW() - INTERVAL 7 DAY;
+
